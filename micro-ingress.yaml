@@ -7,6 +7,9 @@ spec:
     - hosts:
         - hello-risf.local.domain
       secretName: hello-risf.local.domain.tls
+    - hosts:
+        - hello-itsf.local.domain
+      secretName: hello-itsf.local.domain.tls
   rules:
     - host: hello-risf.local.domain
       http:
