@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: itsf-deployment
+  labels:
+    app: itsf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: itsf
+  template:
+    metadata:
+      labels:
+        app: itsf
+    spec:
+      containers:
+        - name: itsf
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/share/nginx/html/"
+              name: "microsvc-storage"
+      volumes:
+        - name: microsvc-storage
+          persistentVolumeClaim:
+            claimName: micropvc

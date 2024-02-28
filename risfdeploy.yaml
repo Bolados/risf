@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: risf-deployment
+  labels:
+    app: risf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: risf
+  template:
+    metadata:
+      labels:
+        app: risf
+    spec:
+      containers:
+        - name: risf
+          image: docker.io/library/microrisf:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80

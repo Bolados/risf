@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: micro-ingress
+spec:
+  tls:
+    - hosts:
+        - hello-risf.local.domain
+      secretName: hello-risf.local.domain.tls
+  rules:
+    - host: hello-risf.local.domain
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: risf-svc
+                port:
+                  number: 80
+    - host: hello-itsf.local.domain
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: itsf-svc
+                port:
+                  number: 80
